@@ -1,4 +1,5 @@
 interface Shape{
+	double PI=3.14;
 	double findArea();//by default methods are public and abstract
 	void sayThanks();
 }
@@ -8,11 +9,11 @@ class Circle implements Shape{
 		this.r=r;
 	}
 	public double findArea(){
-		return 3.14*r*r;
+		return PI*r*r;
 	}
 	@Override
 	public void sayThanks() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }
@@ -28,7 +29,9 @@ class Triangle implements Shape{
 	@Override
 	public void sayThanks() {
 		// TODO Auto-generated method stub
+		
 	}
+	
 }
 public class TestArea {
 	public static void main(String[] args) {
