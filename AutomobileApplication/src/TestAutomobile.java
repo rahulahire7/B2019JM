@@ -27,7 +27,6 @@ public class TestAutomobile {
 		*/
 	}
 	public static void display(Automobile a,String str){
-		
 		System.out.println("---------------------------------------");
 		//System.out.println(a);
 		System.out.println(str+" Model :"+a.getModel());
