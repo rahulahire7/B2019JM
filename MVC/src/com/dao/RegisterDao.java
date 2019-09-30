@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
-
 import com.model.Login;
 import com.model.Register;
-
-import sun.java2d.pipe.hw.AccelDeviceEventListener;
 
 public class RegisterDao {
 	private static Connection con;
@@ -61,7 +60,7 @@ public class RegisterDao {
 			ps.setString(2,l.getPass());
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()){
-			System.out.println("result set");
+				System.out.println("result set");
 				b=true;
 			}
 			else
@@ -73,6 +72,28 @@ public class RegisterDao {
 			System.out.println(e);
 		}
 		return b;
+	}
+	public List<Register> searchData(int sno){
+		getConnection();
+		List<Register> l=new LinkedList<Register>();
+		try {
+			ps=con.prepareStatement("select * from bankjm where accno=?");//101
+			ps.setInt(1,sno);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				Register r=new Register();
+				r.setAccNo(rs.getInt(1));
+				r.setCustName(rs.getString(2));
+				r.setUserName(rs.getString(3));
+				r.setPass(rs.getString(4));
+				r.setAccBal(rs.getInt(5));
+				l.add(r);	
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return l;
 	}
 
 }

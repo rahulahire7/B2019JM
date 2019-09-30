@@ -43,17 +43,17 @@ public class AccountController extends HttpServlet {
 	String pass=request.getParameter("pass");
 	int bal=Integer.parseInt(request.getParameter("bal"));
 	System.out.println("test2");
+	
 	Register r=new Register();
 	r.setAccNo(accNo);
 	r.setCustName(custName);
 	r.setUserName(uname);
 	r.setPass(pass);
 	r.setAccBal(bal);
-	
-	RegisterDao rd=new RegisterDao();
 	List<Register> lst=new ArrayList<Register>();
 	lst.add(r);
-	
+
+	RegisterDao rd=new RegisterDao();
 	int i=rd.saveData(lst);
 	if(i>0){
 		response.sendRedirect("Login.html");
